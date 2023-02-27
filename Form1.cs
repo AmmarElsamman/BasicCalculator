@@ -1,4 +1,4 @@
-namespace BasicCalculator
+﻿namespace BasicCalculator
 {
     /// <summary>
     /// A Basic Calculator
@@ -6,283 +6,113 @@ namespace BasicCalculator
     public partial class Form1 : Form
     {
         #region Constructor
-
         /// <summary>
         /// Default constructor
         /// </summary>
         public Form1()
         {
             InitializeComponent();
+            this.UserInput.SelectionStart = this.UserInput.Text.Length;
         }
         #endregion
 
         #region Number Methods
-
-        /// <summary>
-        /// Adds the 0 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender">the event sender</param>
-        /// <param name="e">the event arguments</param>
-        private void ZeroButton_Click(object sender, EventArgs e)
+        private void DigitButton_Click(object sender, EventArgs e)
         {
-            //checks if there is only a zero in the textbox 
-            if(this.UserInput.Text != "0")
-                //insert a zero if there isn't a zero already
-                InsertTextValue("0");
+            Button digit = (Button)sender;
 
-                
-            //focus the user input text
-            FocusInput();
-        }
+            if (sender.Equals(ZeroButton) || sender.Equals(S_ZeroButton))
+            {
+                if (this.UserInput.Text != "0")
+                    //insert a zero if there isn't a zero already
+                    InsertTextValue("0");
 
-        /// <summary>
-        /// Adds the 1 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OneButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
+                //focus the user input text
+                FocusInput();
+            }
+            else if (sender.Equals(DotButton) || sender.Equals(S_DotButton))
+            {
+                if (this.UserInput.Text != "")
+
+                    //insert the value in the user textbox at the currently position
+                    InsertTextValue(".");
+
+                //focus the user input text
+                FocusInput();
+            }
+            else if (sender.Equals(S_Pi))
+            {
                 this.UserInput.Text = "";
 
-            //insert the value in the user textbox at the currently position
-            InsertTextValue("1");
+                InsertTextValue(Convert.ToString(Math.PI));
 
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the 2 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TwoButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
+            } 
+            else if (sender.Equals(S_e))
+            {
                 this.UserInput.Text = "";
 
-            //insert the value in the user textbox at the currently position
-            InsertTextValue("2");
+                InsertTextValue(Convert.ToString(Math.E));
 
-            //focus the user input text
-            FocusInput();
-        }
+            }
+            else
+            {
+                if (this.UserInput.Text == "0")
+                    this.UserInput.Text = "";
 
-        /// <summary>
-        /// Adds the 3 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ThreeButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
-                this.UserInput.Text = "";
-
-            //insert the value in the user textbox at the currently position
-            InsertTextValue("3");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the 4 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FourButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
-                this.UserInput.Text = "";
-
-            //insert the value in the user textbox at the currently position
-            InsertTextValue("4");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the 5 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FiveButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
-                this.UserInput.Text = "";
-
-            //insert the value in the user textbox at the currently position
-            InsertTextValue("5");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-
-        /// <summary>
-        /// Adds the 6 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SixButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
-                this.UserInput.Text = "";
-
-            //insert the value in the user textbox at the currently position
-            InsertTextValue("6");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the 7 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SevenButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
-                this.UserInput.Text = "";
-
-            InsertTextValue("7");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the 8 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EightButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
-                this.UserInput.Text = "";
-
-            //insert the value in the user textbox at the currently position
-            InsertTextValue("8");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the 9 character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NineButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
-                this.UserInput.Text = "";
-
-            //insert the value in the user textbox at the currently position
-            InsertTextValue("9");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the . character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DotButton_Click(object sender, EventArgs e)
-        {
-            if (this.UserInput.Text == "0")
-                this.UserInput.Text = "";
-
-            if(this.UserInput.Text != "")
-                
                 //insert the value in the user textbox at the currently position
-                InsertTextValue(".");
+                InsertTextValue(digit.Text);
 
-            //focus the user input text
-            FocusInput();
+                //focus the user input text
+                FocusInput();
+            }
+            
+            
         }
         #endregion
 
         #region Operations Methods
 
-        /// <summary>
-        /// Adds the divide character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DivideButton_Click(object sender, EventArgs e)
+        private void OperationButton_Click(object sender, EventArgs e)
         {
+
+            Button operationSign = (Button)sender;
+
             //calculate the previous opertion
             CalculateEquation();
 
-            if (this.UserInput.Text != "" && !this.UserInput.Text.Contains('/'))
+            if (this.UserInput.Text != "" && this.UserInput.Text.Contains(operationSign.Text))
+            {
+                if (operationSign.Text == "-")
+                {
+                    if (this.UserInput.Text[0] == '-')
+                    {
+
+                        //insert the value in the user textbox at the currently position
+                        this.ErrorMessageLabel.Text += '-';
+                        this.UserInput.Text = "0";
+
+                    }else
+                    {
+                        return;
+                    }
+                }
+                
+            }
+            else
+            {
                 //insert the value in the user textbox at the currently position
-                InsertTextValue("/");
+                this.ErrorMessageLabel.Text += operationSign.Text;
+
+                this.UserInput.Text = "0";
+            }
 
             //focus the user input text
             FocusInput();
+
         }
 
-        /// <summary>
-        /// Adds the times character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TimesButton_Click(object sender, EventArgs e)
-        {
-            //calculate the previous opertion
-            CalculateEquation();
 
-            if(this.UserInput.Text != "" && !this.UserInput.Text.Contains('*'))
-                //insert the value in the user textbox at the currently position
-                InsertTextValue("*");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the minus character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void minusButton_Click(object sender, EventArgs e)
-        {
-            //calculate the previous opertion
-            CalculateEquation();
-
-            if (this.UserInput.Text != "" && !this.UserInput.Text.Contains('-'))
-                //insert the value in the user textbox at the currently position
-                InsertTextValue("-");
-
-            //focus the user input text
-            FocusInput();
-        }
-
-        /// <summary>
-        /// Adds the plus character to the text at the current selection postion
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PlusButton_Click(object sender, EventArgs e)
-        {
-            //calculate the previous opertion
-            CalculateEquation();
-
-            if (this.UserInput.Text != "" && !this.UserInput.Text.Contains('+'))
-                //insert the value in the user textbox at the currently position
-                InsertTextValue("+");
-
-            //focus the user input text
-            FocusInput();
-        }
         #endregion
-
 
         /// <summary>
         /// printes the output
@@ -293,7 +123,7 @@ namespace BasicCalculator
         {
             //Calculates the equation
             CalculateEquation();
-            
+
             //focus the user input text
             FocusInput();
         }
@@ -316,7 +146,7 @@ namespace BasicCalculator
         #region Calculating operations...
 
         /// <summary>
-        /// //Parses the users equation and calculates the result
+        /// Parses the users equation and calculates the result
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
@@ -325,7 +155,7 @@ namespace BasicCalculator
             try
             {
                 //Get the user's equation
-                var userInput = this.UserInput.Text;
+                var userInput = this.ErrorMessageLabel.Text;
 
                 //create a new top-level operation
                 var operation = new Operation();
@@ -343,26 +173,46 @@ namespace BasicCalculator
                             operation.RightSide = AddNumCharacter(operation.RightSide, userInput[i]);
                     }
                     //if it is an operator set the operator type
-                    else if ("+-*/".Any(c => userInput[i] == c))
+                    else if ("+-x/".Any(c => userInput[i] == c))
                     {
                         if (leftSide)
                         {
                             //Gets the operator type
                             var operationType = GetOperationType(userInput[i]);
-                            operation.OperationType = operationType;
-                            leftSide = false;
+
+                            if (operation.LeftSide.Length == 0)
+                            {
+                                //check if the operator is not a minus
+                                if (operationType == OperationType.Minus)
+
+                                    //if we got a minus 
+                                    operation.LeftSide += userInput[i];
+
+                            }
+                            else
+                            {
+                                // Now we got a left number so we need to move to the right side
+
+                                //set operation type
+                                operation.OperationType = operationType;
+
+                                //Move to the right side
+                                leftSide = false;
+                            }
 
                         }
-                       
 
                     }
                 }
-
-                if (operation.RightSide != "")
+                if (operation.RightSide == "" && leftSide == false)
                 {
+                    //Take the right side of the opertion from the text box
+                    operation.RightSide = this.UserInput.Text;
+
                     //If we are done parsing, calculate the equation
                     return CalculateOperation(operation);
                 }
+
                 return this.UserInput.Text;
             }
             catch (Exception ex)
@@ -377,6 +227,7 @@ namespace BasicCalculator
         /// <param name="operation">the operation to calculate</param>
         private string CalculateOperation(Operation operation)
         {
+
             double result = 0;
             double left = 0;
             double right = 0;
@@ -395,10 +246,11 @@ namespace BasicCalculator
 
             try
             {
+                //making calculations according to the opertion type
                 switch (operation.OperationType)
                 {
                     case OperationType.Add:
-                        result =  (left + right);
+                        result = (left + right);
                         break;
 
                     case OperationType.Minus:
@@ -406,30 +258,36 @@ namespace BasicCalculator
                         break;
 
                     case OperationType.Multiply:
-                        result =  (left * right);
+                        result = (left * right);
                         break;
 
                     case OperationType.Divide:
-                        result = Math.Round((left / right),5);
+                        result = Math.Round((left / right), 5);
                         break;
                     default:
                         throw new InvalidOperationException($"Unknown operator type when calculating operation");
                 }
+
+                //if zero is divided by zero
                 if (result.ToString() == "NaN")
                 {
                     this.UserInput.Text = string.Empty;
                     return "Result is undefined";
-                }else if ((operation.OperationType == OperationType.Divide) && right == 0)
+                }
+
+                //cannot divide by zero
+                else if ((operation.OperationType == OperationType.Divide) && right == 0)
                 {
                     this.UserInput.Text = string.Empty;
                     return "Cannot divide by zero";
                 }
 
+                //writing the output (result)
                 this.UserInput.Text = result.ToString();
                 this.UserInput.SelectionStart = this.UserInput.Text.Length;
                 return result.ToString();
 
-                
+
             }
             catch (Exception ex)
             {
@@ -444,6 +302,7 @@ namespace BasicCalculator
         /// <returns></returns>
         private OperationType GetOperationType(char character)
         {
+            //setting the operation type
             switch (character)
             {
                 case '+':
@@ -452,7 +311,7 @@ namespace BasicCalculator
                     return OperationType.Minus;
                 case '/':
                     return OperationType.Divide;
-                case '*':
+                case 'x':
                     return OperationType.Multiply;
                 default:
                     throw new InvalidOperationException($"Unknown operator type {character}");
@@ -484,12 +343,22 @@ namespace BasicCalculator
         /// <param name="e"></param>
         private void CEButton_Click(object sender, EventArgs e)
         {
+
+            //if it is the final answer and the user cleared the the input it deletes the result too
+            if (this.UserInput.Text == this.ErrorMessageLabel.Text)
+            {
+                this.UserInput.Text = string.Empty;
+                this.ErrorMessageLabel.Text = string.Empty;
+            }
+
             //Clears the text from the user input text box
             this.UserInput.Text = string.Empty;
-            
+
+            this.UserInput.Text = "0";
 
             //focus the user input text
             FocusInput();
+
         }
 
         /// <summary>
@@ -499,12 +368,15 @@ namespace BasicCalculator
         /// <param name="e"></param>
         private void CButton_Click(object sender, EventArgs e)
         {
-            //Clears the text from the user input text box
+            //Clears the text from the user input text box and the result box
             this.UserInput.Text = string.Empty;
             this.ErrorMessageLabel.Text = String.Empty;
 
+            this.UserInput.Text = "0";
+
             //focus the user input text
             FocusInput();
+
         }
 
         /// <summary>
@@ -518,63 +390,9 @@ namespace BasicCalculator
             DeleteTextValue();
 
             //focus the user input text
-            FocusInput(); 
+            FocusInput();
 
         }
-        #endregion
-
-        #region helpful Methods
-
-        /// <summary>
-        /// Focuses the user input text
-        /// </summary>
-        private void FocusInput()
-        {
-            this.UserInput.Focus();
-        }
-
-        /// <summary>
-        /// Insert the given value into the user input textbox
-        /// </summary>
-        /// <param name="value">the value to insert</param>
-        private void InsertTextValue(string value)
-        {
-            //remember cursor location
-            var selectionStart = this.UserInput.SelectionStart;
-
-            //set new text
-            this.UserInput.Text = this.UserInput.Text.Insert(this.UserInput.SelectionStart, value);
-
-            //Return the cursor to the last location
-            //this.UserInput.SelectionStart = selectionStart + value.Length;
-
-            //unhighlight the text
-            this.UserInput.SelectionStart = this.UserInput.Text.Length;
-
-        }
-
-        /// <summary>
-        /// Deletes the character to the right of the cursor of the user input textbox
-        /// </summary>
-        private void DeleteTextValue()
-        {
-            string s = this.UserInput.Text;
-
-            if (s.Length > 1)
-            {
-                s = s.Substring(0, s.Length - 1);
-            }
-            else
-            {
-                s = "0";
-            }
-
-            this.UserInput.Text = s;
-            this.UserInput.SelectionStart = this.UserInput.Text.Length;
-        }
-
-
-
         #endregion
 
         #region Handling Other Characters
@@ -582,7 +400,7 @@ namespace BasicCalculator
         {
             //does't allow any character
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != '+')
-                && (e.KeyChar != '-') && (e.KeyChar != '*') && (e.KeyChar != '/')) 
+                && (e.KeyChar != '-') && (e.KeyChar != '*') && (e.KeyChar != '/'))
             {
                 e.Handled = true;
             }
@@ -616,9 +434,452 @@ namespace BasicCalculator
             {
                 e.Handled = true;
             }
-            #endregion
 
         }
+
+        #endregion
+
+        #region helpful Methods
+
+        /// <summary>
+        /// Focuses the user input text
+        /// </summary>
+        private void FocusInput()
+        {
+            this.UserInput.Focus();
+            this.UserInput.SelectionStart = this.UserInput.Text.Length;
+
+
+            //---------------------------------------------------------------------------
+
+            //var str = this.UserInput.Text.ToCharArray();
+            //var sb = new System.Text.StringBuilder();
+
+            //if(this.UserInput.Text.Length > 3)
+            //{
+            //    for(int k = str.Length-1; k > -1; k--)
+            //    {
+            //        if ((k % 3 == 0) && k != 0 && str[k-1] != ',' )
+            //        {
+            //            sb.Append(str[k]);
+            //            sb.Append(',');
+            //        }
+            //        else
+            //        {
+            //            sb.Append(str[k]);
+            //        }
+            //    }
+            //    this.UserInput.Text = sb.ToString();
+            //}
+            //---------------------------------------------------------------------------
+
+        }
+
+        /// <summary>
+        /// Insert the given value into the user input textbox
+        /// </summary>
+        /// <param name="value">the value to insert</param>
+        private void InsertTextValue(string value)
+        {
+            //remember cursor location
+            var selectionStart = this.UserInput.SelectionStart;
+
+            //set new text
+            this.UserInput.Text = this.UserInput.Text.Insert(this.UserInput.SelectionStart, value);
+
+            //Return the cursor to the last location
+            //this.UserInput.SelectionStart = selectionStart + value.Length;
+
+            //unhighlight the text
+            this.UserInput.SelectionStart = this.UserInput.Text.Length;
+
+        }
+
+        /// <summary>
+        /// Deletes the character to the right of the cursor of the user input textbox
+        /// </summary>
+        private void DeleteTextValue()
+        {
+
+
+            if (this.UserInput.Text.Length > 1)
+            {
+                this.UserInput.Text = this.UserInput.Text.Substring(0, this.UserInput.Text.Length - 1);
+            }
+            else if (this.UserInput.Text.Length == 1)
+            {
+
+                if (this.UserInput.Text == "0")
+                {
+                    this.UserInput.Text = this.UserInput.Text;
+                    this.UserInput.SelectionStart = this.UserInput.Text.Length;
+                    return;
+                }
+                else
+                {
+                    this.UserInput.Text = this.UserInput.Text.Substring(0, this.UserInput.Text.Length - 1);
+                    this.UserInput.Text = "0";
+                }
+
+            }
+
+            this.UserInput.Text = this.UserInput.Text;
+            this.UserInput.SelectionStart = this.UserInput.Text.Length;
+        }
+
+        #endregion
+
+        #region Memory Handling
+
+        /// <summary>
+        /// initialize the memory class
+        /// </summary>
+        MemoryData memory = new MemoryData();
+
+
+        int index = 1;
+
+        /// <summary>
+        /// rewrite the memory
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MemorySave_Click(object sender, EventArgs e)
+        {
+            if (index == 1)
+            {
+                this.MemoryHistory.Items.Insert(0, "M");
+            }
+
+            if (this.UserInput.Text != "")
+            {
+                //save the value to the memory
+                memory.Memory = Convert.ToDouble(this.UserInput.Text);
+
+                this.MemoryHistory.Items.Insert(index, memory.Memory);
+
+                //right the value of the memory
+                this.MemoryLabel.Text = $"M= {memory.Memory}";
+
+                index++;
+
+                this.UserInput.Text = "0";
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+            /// add the given value to the memory
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+        private void MemoryAdd_Click(object sender, EventArgs e)
+        {
+            //add the value in the text box to the memory 
+            memory.Add(Convert.ToDouble(this.UserInput.Text));
+
+            //right the value of the memory
+            this.MemoryLabel.Text = $"M= {memory.Memory}";
+
+            if (index == 1)
+            {
+                this.MemoryHistory.Items.Insert(0, "M");
+                this.MemoryHistory.Items.Insert(index, memory.Memory);
+                index++;
+                return;
+            }
+            else
+            {
+                this.MemoryHistory.Items.RemoveAt(index - 1);
+                this.MemoryHistory.Items.Insert(index - 1, memory.Memory);
+            }
+            this.UserInput.Text = "0";
+        }
+
+        /// <summary>
+        /// subtract the given value from the memory
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MemorySubtract_Click(object sender, EventArgs e)
+        {
+            //subtract the vlue in the text box from the memory
+            memory.Subtract(Convert.ToDouble(this.UserInput.Text));
+
+            //right the value of the memory
+            this.MemoryLabel.Text = $"M= {memory.Memory}";
+
+            if (index == 1)
+            {
+                this.MemoryHistory.Items.Insert(0, "M");
+                this.MemoryHistory.Items.Insert(index, memory.Memory);
+                index++;
+                return;
+            }
+            else
+            {
+                this.MemoryHistory.Items.RemoveAt(index - 1);
+                this.MemoryHistory.Items.Insert(index - 1, memory.Memory);
+
+            }
+            this.UserInput.Text = "0";
+
+        }
+
+        /// <summary>
+        /// recall the value in the memory
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MemoryRecall_Click(object sender, EventArgs e)
+        {
+            //right the value of the memory in the text box
+            this.UserInput.Text = string.Empty;
+            this.UserInput.Text = memory.Memory.ToString();
+        }
+
+        /// <summary>
+        /// Clears the memory
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MemoryClear_Click(object sender, EventArgs e)
+        {
+            memory.Memory = 0;
+
+            //clear the value of the memory
+            this.MemoryLabel.Text = string.Empty;
+
+            this.MemoryHistory.Items.Clear();
+
+        }
+
+        private void MemoryHistory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedValue = this.MemoryHistory.SelectedItem.ToString();
+
+            for (int i = 0; i < selectedValue.Length; i++)
+            {
+                if ("-0123456789.".Any(c => selectedValue[i] == c))
+                {
+                    this.UserInput.Text = selectedValue;
+                    this.MemoryHistory.SelectedIndex = 0;
+                    FocusInput();
+                    this.UserInput.SelectionStart = this.UserInput.Text.Length;
+                }
+                else
+                {
+                    FocusInput();
+                    this.UserInput.SelectionStart = this.UserInput.Text.Length;
+                    return;
+                }
+            }
+
+        }
+
+        #endregion
+
+        #region Other Functions
+
+        /// <summary>
+        /// Set Negative numbers
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NegativeSign_Click(object sender, EventArgs e)
+        {
+            if (this.UserInput.Text != string.Empty)
+            {
+                if (!this.UserInput.Text.Contains('-'))
+                {
+
+                    this.UserInput.SelectionStart = 0;
+
+                    InsertTextValue("-");
+
+                    this.UserInput.SelectionStart = this.UserInput.Text.Length;
+
+                }
+                else
+                {
+                    var negativeIndex = this.UserInput.Text.IndexOf('-');
+                    this.UserInput.Text = this.UserInput.Text.Substring(1, this.UserInput.Text.Length - 1);
+                    this.UserInput.SelectionStart = this.UserInput.Text.Length;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the certain percentage of a value 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PercentageButton_Click(object sender, EventArgs e)
+        {
+            var leftSide = "";
+            var value = this.ErrorMessageLabel.Text;
+
+            if (this.ErrorMessageLabel.Text != "")
+            {
+                for (int i = 0; i < value.Length; i++)
+                {
+                    if ("0123456789.".Any(c => value[i] == c))
+                    {
+                        leftSide += value[i];
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                var valueToCalculate = Convert.ToDouble(leftSide);
+                var percentage = valueToCalculate * (Convert.ToDouble(this.UserInput.Text) / 100);
+                this.UserInput.Text = percentage.ToString();
+            }
+            else
+            {
+                this.UserInput.Text = "0";
+                this.ErrorMessageLabel.Text = "0";
+            }
+        }
+
+        /// <summary>
+        /// Get the Multiplication Inverse of a value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InverseFraction_Click(object sender, EventArgs e)
+        {
+            var value = Convert.ToDouble(this.UserInput.Text);
+
+            if (value != 0)
+            {
+                var multiInverse = 1 / value;
+                this.UserInput.Text = multiInverse.ToString();
+                this.ErrorMessageLabel.Text = $" 1/({value.ToString()})";
+            }
+            else
+            {
+
+                this.ErrorMessageLabel.Text = "Cannot divide by zero";
+            }
+        }
+
+        /// <summary>
+        /// Gets the Square root of a value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SquareRoot_Click(object sender, EventArgs e)
+        {
+            var value = Convert.ToDouble(this.UserInput.Text);
+            
+            var squareRoot = Math.Sqrt(value);
+
+            this.UserInput.Text = squareRoot.ToString();
+
+            this.ErrorMessageLabel.Text = $"√({value.ToString()})";
+
+        }
+
+        /// <summary>
+        /// Gets the square power of a value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Squared_Click(object sender, EventArgs e)
+        {
+
+            var value = Convert.ToDouble(this.UserInput.Text);
+
+            var squared = Math.Pow(value, 2);
+
+            this.UserInput.Text = squared.ToString();
+
+            this.ErrorMessageLabel.Text = $"sqr({value})";
+
+        }
+
+        #endregion
+
+        #region Menu Strip
+
+        private void ScientificCalc_Click(object sender, EventArgs e)
+        {
+            this.ButtonsPanel.Visible = false;
+            this.tableLayoutPanel2.Visible = true;
+            this.tableLayoutPanel2.Size = this.ButtonsPanel.Size;
+            this.tableLayoutPanel2.Location = this.ButtonsPanel.Location;
+
+        }
+
+        private void StandardCalc_Click(object sender, EventArgs e)
+        {
+            if (this.tableLayoutPanel2.Visible == false)
+            {
+                return;
+            }
+            else
+            {
+                this.tableLayoutPanel2.Visible = false;
+                this.ButtonsPanel.Visible = true;
+                this.ButtonsPanel.Size = this.tableLayoutPanel2.Size;
+                this.ButtonsPanel.Location = this.tableLayoutPanel2.Location;
+            }
+        }
+
+        #endregion
+
+
+        #region Scientific Opertions
+
+        /// <summary>
+        /// Raises 10 to a given power
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void S_Base10_Click(object sender, EventArgs e)
+        {
+            var value = Convert.ToDouble(this.UserInput.Text);
+
+            double result = Math.Pow(10, value);
+
+            this.UserInput.Text = Convert.ToDecimal(result).ToString();
+
+            this.ErrorMessageLabel.Text = $"10^(value)";
+
+        }
+
+        /// <summary>
+        /// Get The factorial of the value given
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void S_Factorial_Click(object sender, EventArgs e)
+        {
+            var value = Convert.ToDouble(this.UserInput.Text);
+            int value_int = Convert.ToInt32(value);
+            double result = 1;
+
+            for(int i = value_int; i > 0; i--)
+            {
+                result *= i;
+            }
+        
+
+            this.UserInput.Text = Convert.ToDecimal(result).ToString();
+            this.ErrorMessageLabel.Text = $"fact({value})";
+
+        }
+
+
+
+
+
+        #endregion
 
     }
 }
