@@ -35,7 +35,8 @@
                 if (this.UserInput.Text != "")
 
                     //insert the value in the user textbox at the currently position
-                    InsertTextValue(".");
+                    if(!this.UserInput.Text.Contains('.'))
+                        InsertTextValue(".");
 
                 //focus the user input text
                 FocusInput();
@@ -847,9 +848,9 @@
 
             double result = Math.Pow(10, value);
 
-            this.UserInput.Text = Convert.ToDecimal(result).ToString();
+            this.UserInput.Text = Convert.ToDouble(result).ToString();
 
-            this.ErrorMessageLabel.Text = $"10^(value)";
+            this.ErrorMessageLabel.Text = "10^("+value+")";
 
         }
 
@@ -870,7 +871,7 @@
             }
         
 
-            this.UserInput.Text = Convert.ToDecimal(result).ToString();
+            this.UserInput.Text = Convert.ToDouble(result).ToString();
             this.ErrorMessageLabel.Text = $"fact({value})";
 
         }
