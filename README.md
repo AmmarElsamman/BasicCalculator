@@ -1,5 +1,10 @@
-# BasicCalculator
+# BasicCalculator (Not Fully Functional yet)
 
 A calculator that do the basic calculations, works the same as a windows calculator.
+It has two tabs Standard & scientific
 
-![Screenshot 2022-08-08 172212](https://user-images.githubusercontent.com/53655392/183453988-c8a91178-7b1a-4bab-b8c4-7e70a2d85b3d.png)
+# Standard
+![Screenshot 2023-02-27 184056](https://github.com/AmmarElsamman/BasicCalculator/assets/53655392/41a60707-09fe-4816-aa78-fc464fe06c6f)
+
+# scientific
+![Screenshot 2023-02-27 184413](https://github.com/AmmarElsamman/BasicCalculator/assets/53655392/06980a71-0fef-40df-bd97-5ada51364404)
